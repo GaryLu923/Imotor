@@ -13,24 +13,29 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <jdk.version>1.7</jdk.version>
-		<spring.version>4.1.5.RELEASE</spring.version>
-		<jstl.version>1.2</jstl.version>
-		<servletapi.version>2.5</servletapi.version>		
+	<spring.version>4.1.6.RELEASE</spring.version>
+	<jstl.version>1.2</jstl.version>
+	<servletapi.version>2.5</servletapi.version>
+	<json.version>1.1</json.version>
+	<gson.version>2.2.4</gson.version>
+	<postgresql.version>8.4-702.jdbc4</postgresql.version>
+	<log4j.version>1.2.17</log4j.version>
   </properties>
+  
 	<dependencies>
 
 		<!-- Spring MVC framework -->
-		<!--  <dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc.RELEASE</artifactId>
-			<version>${spring.version}</version>
-		</dependency>-->
-		<dependency>
+		 <dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
 
 		<!-- JSTL -->
 		<dependency>
@@ -46,12 +51,49 @@
 			<version>${servletapi.version}</version>
 			<scope>provided</scope>
 		</dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
+		
+		<!-- spring jdbc -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		
+		<!-- json -->
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>${json.version}</version>
+		</dependency>
+		
+		<!-- gson -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>${gson.version}</version>
+		</dependency>
+		
+		<!-- postgresql -->
+		<dependency>
+			<groupId>postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>${postgresql.version}</version>
+		</dependency>
+		
+		<!-- log4j -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>		
+		
+	    <dependency>
+	      <groupId>junit</groupId>
+	      <artifactId>junit</artifactId>
+	      <version>3.8.1</version>
+	      <scope>test</scope>
+	    </dependency>
+	    
   </dependencies>
   <build>
     <!--  <sourceDirectory>src</sourceDirectory>-->
@@ -66,12 +108,39 @@
       </plugin>
       <plugin>
         <artifactId>maven-war-plugin</artifactId>
-        <version>2.4</version>
+        <version>2.6</version>
+        <executions>
+          <execution>
+            <id>default-war</id>
+            <phase>package</phase>
+            <goals>
+              <goal>war</goal>
+            </goals>
+            <configuration>
+              <warSourceDirectory>WebContent</warSourceDirectory>
+              <failOnMissingWebXml>false</failOnMissingWebXml>
+            </configuration>
+          </execution>
+        </executions>
         <configuration>
           <warSourceDirectory>WebContent</warSourceDirectory>
           <failOnMissingWebXml>false</failOnMissingWebXml>
-        </configuration>
+        </configuration>        
       </plugin>
+      <plugin>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>2.7</version>
+        <executions>
+          <execution>
+            <id>default-deploy</id>
+            <phase>deploy</phase>
+            <goals>
+              <goal>deploy</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      
     </plugins>
   </build>
 </project>
