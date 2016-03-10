@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
@@ -19,9 +20,9 @@ import com.google.gson.reflect.TypeToken;
  */
 @Controller
 @RequestMapping("/")
-public class ViewContorller {
+public class ViewController {
 	
-	private DBContorller dbController;
+	private DBController dbController;
 	private String weatherJsonString;
 	private String vdspeedJsonString;
 	private Weather weather;
@@ -44,20 +45,22 @@ public class ViewContorller {
 	 * get view of hello.jsp
 	 * @return ModelAndView 
 	 */
-	@RequestMapping(value="hello/getVDSpeedDataSet",method=RequestMethod.GET)
-	public ModelAndView getVDSpeedDataSetView(){
+	@RequestMapping(value="hello/getVDSpeedDataSet",method=RequestMethod.GET,produces = "text/plain;charset=UTF-8")
+	public @ResponseBody String getVDSpeedDataSetView(){
 		String message=getVDSpeedDataSet();
-		return new ModelAndView("hello","message",message);
+//		return new ModelAndView("hello","message",message);
+		return message;
 	}
 	
 	/**
 	 * get view of hello.jsp
 	 * @return ModelAndView 
 	 */
-	@RequestMapping(value="hello/getWeatherDataSet",method=RequestMethod.GET)
-	public ModelAndView getWeatherDataSetView(){
+	@RequestMapping(value="hello/getWeatherDataSet",method=RequestMethod.GET,produces = "text/plain;charset=UTF-8")
+	public @ResponseBody String getWeatherDataSetView(){
 		String message=getWeatherDataSet();
-		return new ModelAndView("hello","message",message);
+//		return new ModelAndView("hello","message",message);
+		return message;
 	}
 	
 	/**
@@ -66,8 +69,8 @@ public class ViewContorller {
 	 */
 	public String getWeatherDataSet() {
 		try {
-			DBContorller dbController = new DBContorller(); 
-			dbController.init("org.postgresql.Driver","jdbc:postgresql://localhost:5432/petclinic","ntvf","ntvf");
+			DBController dbController = new DBController(); 
+			dbController.init("org.postgresql.Driver","jdbc:postgresql://localhost:5432/imotor","postgres","12345");
 			weatherList = dbController.findWeatherData("select * from samples_weather");
 			JsonElement element = gson.toJsonTree(weatherList, new TypeToken<List<Weather>>() {}.getType());
 			if (! element.isJsonArray()) {
@@ -91,8 +94,8 @@ public class ViewContorller {
 	 */
 	public String getVDSpeedDataSet() {
 		try {
-			DBContorller dbController = new DBContorller(); 
-			dbController.init("org.postgresql.Driver","jdbc:postgresql://localhost:5432/petclinic","ntvf","ntvf");
+			DBController dbController = new DBController(); 
+			dbController.init("org.postgresql.Driver","jdbc:postgresql://localhost:5432/imotor","postgres","12345");
 			vdspeedList = dbController.findVDSpeedData("select * from vdspeed");
 			JsonElement element = gson.toJsonTree(vdspeedList, new TypeToken<List<VDSpeed>>() {}.getType());
 			if (! element.isJsonArray()) {
@@ -110,11 +113,11 @@ public class ViewContorller {
 		return vdspeedJsonString;
 	}
 
-	public DBContorller getDbController() {
+	public DBController getDbController() {
 		return dbController;
 	}
 
-	public void setDbController(DBContorller dbController) {
+	public void setDbController(DBController dbController) {
 		this.dbController = dbController;
 	}
 

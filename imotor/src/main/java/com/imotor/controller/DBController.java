@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * @author jason.lai
  * 
  */
-public class DBContorller {
+public class DBController {
 	
 	Connection conn;
 	Statement stmt;
