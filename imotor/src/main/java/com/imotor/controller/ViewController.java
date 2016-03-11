@@ -30,6 +30,10 @@ public class ViewController {
 	private VDSpeed vdspeed;
 	private ArrayList<VDSpeed> vdspeedList = new ArrayList<VDSpeed>();
 	private Gson gson = new Gson();
+	private String DB_driver = "org.postgresql.Driver";
+	private String DB_address = "jdbc:postgresql://localhost:5432/imotor";
+	private String DB_user = "postgres";
+	private String DB_password = "12345";
 	
 	/**
 	 * get view of Index.jsp
@@ -38,29 +42,26 @@ public class ViewController {
 	@RequestMapping(value="index",method=RequestMethod.GET)
 	public String getIndexView(){
 		return "index";
-		
 	}
 	
 	/**
-	 * get view of hello.jsp
-	 * @return ModelAndView 
+	 * get JSON of VDSpeed
+	 * @return String 
 	 */
 	@RequestMapping(value="hello/getVDSpeedDataSet",method=RequestMethod.GET,produces = "text/plain;charset=UTF-8")
 	public @ResponseBody String getVDSpeedDataSetView(){
-		String message=getVDSpeedDataSet();
-//		return new ModelAndView("hello","message",message);
-		return message;
+//		String message = getVDSpeedDataSet();
+		return getVDSpeedDataSet();
 	}
 	
 	/**
-	 * get view of hello.jsp
-	 * @return ModelAndView 
+	 * get JSON of weather
+	 * @return String 
 	 */
 	@RequestMapping(value="hello/getWeatherDataSet",method=RequestMethod.GET,produces = "text/plain;charset=UTF-8")
 	public @ResponseBody String getWeatherDataSetView(){
-		String message=getWeatherDataSet();
-//		return new ModelAndView("hello","message",message);
-		return message;
+//		String message = getWeatherDataSet();
+		return getWeatherDataSet();
 	}
 	
 	/**
@@ -70,8 +71,8 @@ public class ViewController {
 	public String getWeatherDataSet() {
 		try {
 			DBController dbController = new DBController(); 
-			dbController.init("org.postgresql.Driver","jdbc:postgresql://localhost:5432/imotor","postgres","12345");
-			weatherList = dbController.findWeatherData("select * from samples_weather");
+			dbController.init(DB_driver,DB_address,DB_user,DB_password);
+			weatherList = dbController.findWeatherData("select * from weather");
 			JsonElement element = gson.toJsonTree(weatherList, new TypeToken<List<Weather>>() {}.getType());
 			if (! element.isJsonArray()) {
 			// fail appropriately
@@ -82,7 +83,6 @@ public class ViewController {
 			weatherJsonString = jsonArray.toString();
 			//System.out.println("weatherJsonString:"+weatherJsonString);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return weatherJsonString;
@@ -95,7 +95,7 @@ public class ViewController {
 	public String getVDSpeedDataSet() {
 		try {
 			DBController dbController = new DBController(); 
-			dbController.init("org.postgresql.Driver","jdbc:postgresql://localhost:5432/imotor","postgres","12345");
+			dbController.init(DB_driver,DB_address,DB_user,DB_password);
 			vdspeedList = dbController.findVDSpeedData("select * from vdspeed");
 			JsonElement element = gson.toJsonTree(vdspeedList, new TypeToken<List<VDSpeed>>() {}.getType());
 			if (! element.isJsonArray()) {
@@ -107,7 +107,6 @@ public class ViewController {
 			vdspeedJsonString = jsonArray.toString();
 			//System.out.println("weatherJsonString:"+weatherJsonString);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return vdspeedJsonString;
@@ -175,6 +174,38 @@ public class ViewController {
 
 	public void setVdspeedJsonString(String vdspeedJsonString) {
 		this.vdspeedJsonString = vdspeedJsonString;
+	}
+
+	public String getDB_address() {
+		return DB_address;
+	}
+
+	public void setDB_address(String dB_address) {
+		DB_address = dB_address;
+	}
+
+	public String getDB_user() {
+		return DB_user;
+	}
+
+	public void setDB_user(String dB_user) {
+		DB_user = dB_user;
+	}
+
+	public String getDB_password() {
+		return DB_password;
+	}
+
+	public void setDB_password(String dB_password) {
+		DB_password = dB_password;
+	}
+
+	public String getDB_driver() {
+		return DB_driver;
+	}
+
+	public void setDB_driver(String dB_driver) {
+		DB_driver = dB_driver;
 	}
 	
 	

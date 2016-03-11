@@ -1,0 +1,27 @@
+/* dashboard CSS */
+.dashboard{
+	background: burlywood;
+}
+body {
+	background: #47484a	
+}
+#webContainer
+{
+	margin-top: 10px;
+}
+.menuButton{
+	margin-top: 20px;
+	background: #47484a;
+	height: 50px;
+    width: 50px;
+    background-size: 50px 50px;
+	background-image: url(../img/settings.png);
+}
+.map{
+	margin-top: 10px;
+	height: 300px;
+    width: 100%;
+}
+.travelFrom{
+	margin-top: 10px;
+}

@@ -1,0 +1,11 @@
+/* title CSS */
+div .Title_img{
+	height: 69px;
+    width: 69px;
+    background-size: 69px 69px;
+	background-image: url(../img/bioinfo.png);
+}
+div .Title{
+	text-align: left;
+	font-style: italic;
+}
