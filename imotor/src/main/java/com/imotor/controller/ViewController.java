@@ -34,7 +34,6 @@ public class ViewController {
 	private String DB_address = "jdbc:postgresql://localhost:5432/imotor";
 	private String DB_user = "postgres";
 	private String DB_password = "12345";
-	
 	/**
 	 * get view of Index.jsp
 	 * @return String
@@ -52,6 +51,7 @@ public class ViewController {
 	public @ResponseBody String getVDSpeedDataSetView(){
 //		String message = getVDSpeedDataSet();
 		return getVDSpeedDataSet();
+
 	}
 	
 	/**
@@ -62,6 +62,7 @@ public class ViewController {
 	public @ResponseBody String getWeatherDataSetView(){
 //		String message = getWeatherDataSet();
 		return getWeatherDataSet();
+
 	}
 	
 	/**
