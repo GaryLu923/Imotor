@@ -25,10 +25,13 @@ public class ViewController {
 	private DBController dbController;
 	private String weatherJsonString;
 	private String vdspeedJsonString;
+	private String imotorJsonString;
 	private Weather weather;
 	private ArrayList<Weather> weatherList = new ArrayList<Weather>();
 	private VDSpeed vdspeed;
 	private ArrayList<VDSpeed> vdspeedList = new ArrayList<VDSpeed>();
+	private Imotor imotor;
+	private ArrayList<Imotor> imotorList = new ArrayList<Imotor>();
 	private Gson gson = new Gson();
 	private String DB_driver = "org.postgresql.Driver";
 	private String DB_address = "jdbc:postgresql://localhost:5432/imotor";
@@ -51,7 +54,6 @@ public class ViewController {
 	public @ResponseBody String getVDSpeedDataSetView(){
 //		String message = getVDSpeedDataSet();
 		return getVDSpeedDataSet();
-
 	}
 	
 	/**
@@ -60,8 +62,16 @@ public class ViewController {
 	 */
 	@RequestMapping(value="hello/getWeatherDataSet",method=RequestMethod.GET,produces = "text/plain;charset=UTF-8")
 	public @ResponseBody String getWeatherDataSetView(){
-//		String message = getWeatherDataSet();
 		return getWeatherDataSet();
+	}
+	
+	/**
+	 * get JSON of imotor
+	 * @return String 
+	 */
+	@RequestMapping(value="hello/getImotorDataSet",method=RequestMethod.GET,produces = "text/plain;charset=UTF-8")
+	public @ResponseBody String getImotorDataSetView(){
+		return getImotorDataSet();
 
 	}
 	
@@ -111,6 +121,30 @@ public class ViewController {
 			e.printStackTrace();
 		}
 		return vdspeedJsonString;
+	}
+	
+	/**
+	 * get data of Imotr
+	 * @return String (json) 
+	 */
+	public String getImotorDataSet() {
+		try {
+			DBController dbController = new DBController(); 
+			dbController.init(DB_driver,DB_address,DB_user,DB_password);
+			imotorList = dbController.findImotorData("select * from imotor_info");
+			JsonElement element = gson.toJsonTree(imotorList, new TypeToken<List<Imotor>>() {}.getType());
+			if (! element.isJsonArray()) {
+			// fail appropriately
+			    throw new Exception();
+			}
+			dbController.closeConnection();
+			JsonArray jsonArray = element.getAsJsonArray();
+			imotorJsonString = jsonArray.toString();
+			//System.out.println("weatherJsonString:"+weatherJsonString);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return imotorJsonString;
 	}
 
 	public DBController getDbController() {
@@ -207,6 +241,30 @@ public class ViewController {
 
 	public void setDB_driver(String dB_driver) {
 		DB_driver = dB_driver;
+	}
+
+	public String getImotorJsonString() {
+		return imotorJsonString;
+	}
+
+	public void setImotorJsonString(String imotorJsonString) {
+		this.imotorJsonString = imotorJsonString;
+	}
+
+	public Imotor getImotor() {
+		return imotor;
+	}
+
+	public void setImotor(Imotor imotor) {
+		this.imotor = imotor;
+	}
+
+	public ArrayList<Imotor> getImotorList() {
+		return imotorList;
+	}
+
+	public void setImotorList(ArrayList<Imotor> imotorList) {
+		this.imotorList = imotorList;
 	}
 	
 	

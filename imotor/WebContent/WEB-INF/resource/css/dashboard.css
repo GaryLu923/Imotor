@@ -3,7 +3,9 @@
 	background: burlywood;
 }
 body {
-	background: #47484a	
+	/*background: #47484a;*/
+	background: white;
+
 }
 #webContainer
 {
@@ -24,4 +26,133 @@ body {
 }
 .travelFrom{
 	margin-top: 10px;
+}
+.navItem:hover{
+	background-color: darkgoldenrod;
+}
+.itemHome{
+	height: 50px;
+	width: 100px;
+	float: left;
+	background-image: url(../img/home1.png);
+}
+.itemHome:hover{
+	height: 50px;
+	width: 100px;
+	float: left;
+	background-image: url(../img/home2.png);
+}
+.itemDemo{
+	height: 50px;
+	width: 100px;
+	float: left;
+	background-image: url(../img/demo1.png);
+}
+.itemDemo:hover{
+	height: 50px;
+	width: 100px;
+	float: left;
+	background-image: url(../img/demo2.png);
+}
+.itemFator{
+	height: 50px;
+	width: 100px;
+	float: left;
+	background-image: url(../img/fator1.png);
+}
+.itemFator:hover{
+	height: 50px;
+	width: 100px;
+	float: left;
+	background-image: url(../img/fator2.png);
+}
+.itemImotor{
+	height: 50px;
+	width: 100px;
+	float: left;
+	background-image: url(../img/imotor1.png);
+}
+.itemImotor:hover{
+	height: 50px;
+	width: 100px;
+	float: left;
+	background-image: url(../img/imotor2.png);
+}
+.itemPath{
+	height: 50px;
+	width: 100px;
+	float: left;
+	background-image: url(../img/path1.png);
+}
+.itemPath:hover{
+	height: 50px;
+	width: 100px;
+	float: left;
+	background-image: url(../img/path2.png);
+}
+.navBar{
+	background-color: #231815;
+	/*background-color: #EA7B30;*/
+		/*background-color: #484891;*/
+	    border-color: #080808;	
+}
+
+.style1{
+	background-color: black;
+}
+.style2{
+	background-color: yellow;
+}
+.mapSwitcher{
+	background-color: #EA7B30;
+
+}
+.introImg{
+	width: 96%;
+	height: 900px;
+	background-image: url(../img/intro.png);
+}
+.motorImg{
+	width: 96%;
+	height: 100px;
+	background-image: url(../img/motor_classic.png);	
+}
+.pathImg{
+	width: 96%;
+	height: 300px;
+	background-image: url(../img/path_img.png);
+}
+.trafficImg{
+	width: 100%;
+	height: 300px;
+	background-image: url(../img/traffic_img.png);
+}
+.fatorImg{
+	width: 95%;
+	height: 300px;
+	background-image: url(../img/fator_img.png);
+}
+.weatherImg{
+	width: 100%;
+	height: 300px;
+	background-image: url(../img/weather_img.png);
+}
+.demoImg{
+	width: 96%;
+	height: 300px;
+	background-image: url(../img/demo_img.png);
+}
+.chargeImg{
+	width: 100%;
+	height: 300px;
+	background-image: url(../img/charge_img.png);
+}
+.themeImg{
+	width: 100%;
+	height: 768px;
+	background-image: url(../img/imotor_theme2.png);	
+}
+.imgBackgound{
+	width: 100%;
+	background-color:#EA7B30;
 }

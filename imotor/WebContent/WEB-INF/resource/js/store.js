@@ -7,6 +7,11 @@ function Store () {
 		this.endPointObj={};
 		this.travelForm1={};
 		this.travelForm2={};
+		this.chargeMarkers=[];
+		this.trafficData=[];
+		this.weatherData=[];
+		this.trafficMarkers = [];
+		this.weatherMarkers=[];
 }
 
 Store.prototype = {
@@ -19,10 +24,20 @@ Store.prototype = {
 	startPoint:"",
 	endPoint:"",
 	positionData:[],
+	trafficData:[],
+	weatherData:[],
+	positionLayer:{
+		chargeLayer:false,
+		weatherLayer:false,
+		trafficLayer:false
+	},
 	startPos: {},
 	userPosition:{
 		"x":"",
 		"y":""
+	},
+	getPositionLayer:function getPositionLayer(){
+		return this.positionLayer;
 	},
 	getDepaturePoint:function getDepaturePoint(){
 		return this.depaturePoint;
@@ -30,7 +45,7 @@ Store.prototype = {
 	getDestinationPoint:function getDestinationPoint() {
 		return this.destinationPoint;
 	},
-	getPositionData:function getPositionData() {
+	getChargePositionData:function getChargePositionData() {
 		return this.positionData;
 	},
 	cleanDepaturePoint:function cleanDepaturePoint(){
@@ -39,7 +54,7 @@ Store.prototype = {
 	cleanDestinationPoint:function cleanDestinationPoint(){
 		this.destinationPoint="";
 	},
-	cleanPositionData:function cleanPositionData(){
+	cleanChargePositionData:function cleanChargePositionData(){
 		this.positionData=[];
 	},
 };
