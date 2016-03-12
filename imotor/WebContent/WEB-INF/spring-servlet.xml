@@ -33,5 +33,6 @@
 	</bean>
 	
 	<mvc:resources mapping="/resource/**" location="/WEB-INF/resource/" />
+	<mvc:resources mapping="/json/**" location="/WEB-INF/json/" />
     <mvc:annotation-driven/>
 </beans>

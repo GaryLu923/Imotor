@@ -42,6 +42,7 @@
 
 <script>
 		var store=new Store;
+		var api=new API;
 		if (navigator.geolocation) {
 			console.log('Geolocation is supported!');
 		} else {
