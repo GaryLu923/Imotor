@@ -17,7 +17,9 @@ public class DBController {
 	Weather weather;
 	ArrayList<Weather> weatherList = new ArrayList<Weather>();
 	VDSpeed vdspeed;
-	ArrayList<VDSpeed> vdspeedList = new ArrayList<VDSpeed>(); 
+	ArrayList<VDSpeed> vdspeedList = new ArrayList<VDSpeed>();
+	Imotor imotor;
+	ArrayList<Imotor> imotorList = new ArrayList<Imotor>();
 	
 	public void init(String DB_driver, String DB_address, String DB_user, String DB_password) throws Exception {
 		try {
@@ -90,6 +92,28 @@ public class DBController {
 		}
 		return vdspeedList;
 	}
+	
+	public ArrayList<Imotor> findImotorData(String query)throws Exception {
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next()) {
+			   imotor = new Imotor();
+			   imotor.setId(rs.getString("id"));
+			   imotor.setType(rs.getString("type"));
+			   imotor.setMotor(rs.getString("motor"));
+			   imotor.setEndurance(rs.getString("endurance"));
+			   imotor.setCharging_time(rs.getString("charging_time"));
+			   imotor.setBrand(rs.getString("brand"));
+			   imotorList.add(imotor);
+			}
+			rs.close();
+			
+		} catch ( Exception ex ) {
+			ex.printStackTrace();  
+		}
+		return imotorList;
+	}
 
 	public void closeConnection() throws Exception {
 		try {
@@ -146,5 +170,23 @@ public class DBController {
 	public void setVdspeedList(ArrayList<VDSpeed> vdspeedList) {
 		this.vdspeedList = vdspeedList;
 	}
+
+	public Imotor getImotor() {
+		return imotor;
+	}
+
+	public void setImotor(Imotor imotor) {
+		this.imotor = imotor;
+	}
+
+	public ArrayList<Imotor> getImotorList() {
+		return imotorList;
+	}
+
+	public void setImotorList(ArrayList<Imotor> imotorList) {
+		this.imotorList = imotorList;
+	}
+	
+	
 	
 }
