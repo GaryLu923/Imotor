@@ -29,11 +29,14 @@
 <script type="../resource/vender/bootstrap/glyphicon-hal"></script>
 <script src="../resource/vender/react/react-bootstrap.js"></script>
 <script src="../resource/vender/react/react-switcher.js"></script>
+<script src="../resource/vender/react/react-bootstrap.js"></script>
+<script src="../resource/vender/react/react-switcher.js"></script>
+<script src="../resource/js/component.js"></script>
 <script src="../resource/js/store.js"></script>
 <script src="../resource/js/api.js"></script>
 <script src="../resource/js/parse.js"></script>
 <script src="../resource/js/component.js"></script>
-
+<script src="../resource/js/parse.js"></script>
 </head>
 
 <body>
@@ -42,14 +45,13 @@
 </body>
 
 <script>
-		
+	
 		if (navigator.geolocation) {
 			console.log('Geolocation is supported!');
 		} else {
 			console.log('Geolocation is not supported for this Browser/OS version yet.');
 		}
-		ReactDOM.render(React.createElement(Title,{Store: store}),document.getElementById("titleContainer"));
-	
+			ReactDOM.render(React.createElement(Title,{Store: store}),document.getElementById("titleContainer"));
 </script>
 
 </html>

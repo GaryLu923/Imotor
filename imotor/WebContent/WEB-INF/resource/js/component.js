@@ -61,6 +61,32 @@ var Title=React.createClass({displayName: "Title",
 				paddingLeft: '15%'		
 			};
 
+			var paddingTopStyle = {
+				paddingTop: '12%'
+			};
+			var paddingMotorStyle = {
+				paddingTop: '12%',
+				paddingLeft: '16%'
+			};
+			var paddingHeightTopLeftStyle = {
+				height: '100%',
+				paddingTop: '920px',	
+				paddingLeft: '8%' 
+			};
+			var paddingWeatherStyle = {
+				paddingTop: '12%',
+				paddingLeft: '15%'		
+			};
+			var paddingTrafficStyle = {
+				paddingTop: '12%',
+				paddingLeft: '15%'		
+			};
+			var paddingChargeStyle = {
+				width:'100%',
+				paddingTop: '12%',
+				paddingLeft: '15%'		
+			};
+
 		return (		
 				React.createElement(Grid, {className: "col-xs-12 col-md-12 col-lg-12"}, 
 					React.createElement(Row, null, 

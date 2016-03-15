@@ -23,9 +23,9 @@ Store.prototype = {
 	destinationPoint:"",
 	startPoint:"",
 	endPoint:"",
-	positionData:[],
-	trafficData:[],
 	weatherData:[],
+	trafficData:[],
+	positionData:[],
 	positionLayer:{
 		chargeLayer:false,
 		weatherLayer:false,
@@ -58,3 +58,4 @@ Store.prototype = {
 		this.positionData=[];
 	},
 };
+var store=new Store;
